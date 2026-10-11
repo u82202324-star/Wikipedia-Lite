@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlTag" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ويكيبيديا</title>
+  
+  <!-- أيقونة الموقع (Favicon) -->
+  <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeO2Jsoe7KF6aqQHMN7f_ip8W3O_xWOn5lRh5u58mBlQ&s=10">
+  
+  <!-- ربط ملف الـ CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- نافذة اختيار اللغة عند التشغيل -->
+  <div id="langModal">
+    <div class="modal-box">
+      <h2 style="font-size: 1rem; margin-top:0;">اختر اللغة / Language</h2>
+      <button onclick="setLanguage('ar')">العربية</button>
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('fr')">Français</button>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-top">
+      <div class="brand">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeO2Jsoe7KF6aqQHMN7f_ip8W3O_xWOn5lRh5u58mBlQ&s=10" alt="Logo">
+        <h1 id="siteTitle">ويكيبيديا</h1>
+      </div>
+
+      <!-- زر البرجر والقائمة -->
+      <div class="hamburger-container">
+        <button class="hamburger-btn" onclick="toggleMenu(event)">≡</button>
+        <div id="dropdownMenu" class="dropdown-menu">
+          <h3 id="menuTitle">القائمة</h3>
+          <button onclick="getRandomArticle(); closeMenu();" id="menuRandom">مقالة عشوائية</button>
+          <button onclick="showFavorites(); closeMenu();" id="menuFav">المفضلة</button>
+          <button onclick="toggleTheme()" id="btnToggleTheme">الوضع الداكن/الفاتح</button>
+          <div style="margin-top: 8px;">
+            <label id="labelChangeLang" style="font-size: 0.75rem; display: block;">اللغة:</label>
+            <select id="langSelect" onchange="setLanguage(this.value)">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="article-divider">
+      <div class="article-header-row">
+        <h2 id="articleTitle"></h2>
+        <span id="favStarBtn" class="fav-star" onclick="toggleFavoriteCurrent()" title="إضافة للمفضلة">⋆</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="بحث..." oninput="getSuggestions(this.value)" autocomplete="off" />
+        <div id="suggestions" class="suggestions"></div>
+      </div>
+      <button id="btnSearch" onclick="searchWiki(document.getElementById('searchInput').value)">بحث</button>
+    </div>
+  </header>
+
+  <div id="content">اختر اللغة للبدء...</div>
+
+  <div id="articleFooter">
+    <p id="footerLabel">رابط المقالة:</p>
+    <div class="link-box-container">
+      <input type="text" id="wikiLinkInput" readonly />
+      <button onclick="copyWikiLink()" id="btnCopy">نسخ</button>
+    </div>
+  </div>
+
+  <div id="favModal" style="display:none;" onclick="if(event.target === this) closeFavorites()">
+    <div class="fav-content">
+      <h3 id="favModalTitle" style="margin-top:0; font-size: 1rem;">المفضلة</h3>
+      <div id="favList"></div>
+      <button onclick="closeFavorites()" style="margin-top: 10px; width: 100%;" id="favCloseBtn">إغلاق</button>
+    </div>
+  </div>
+
+  <footer>
+    بيانات مباشرة من ويكيبيديا API.
+  </footer>
+
+  <!-- ربط ملف الـ JavaScript -->
+  <script src="script.js"></script>
+</body>
+  </html>
+  
