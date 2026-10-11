@@ -43,7 +43,11 @@ function setLanguage(lang) {
   const t = translations[lang];
   document.getElementById('htmlTag').dir = t.dir;
   document.getElementById('htmlTag').lang = lang;
+  
+  // تغيير اسم الموقع العلوي + عنوان الصفحة في التبويب حسب اللغة
   document.getElementById('siteTitle').innerText = t.siteTitle;
+  document.title = t.siteTitle;
+
   document.getElementById('searchInput').placeholder = t.placeholder;
   document.getElementById('btnSearch').innerText = t.search;
   document.getElementById('footerLabel').innerText = t.footerText;
@@ -302,4 +306,5 @@ function fixMediaPlayers(container) {
 function showError() {
   const t = translations[currentLang];
   document.getElementById('content').innerText = t.error;
-}
+    }
+                
