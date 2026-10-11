@@ -3,9 +3,66 @@ let currentArticleTitle = '';
 let favorites = JSON.parse(localStorage.getItem('wiki_favs') || '[]');
 
 const translations = {
-  ar: { dir: 'rtl', siteTitle: 'ويكيبيديا', placeholder: 'بحث...', search: 'بحث', random: 'مقالة عشوائية', loading: 'جاري التحميل...', error: 'حدث خطأ.', notFound: 'لم يتم العثور على نتائج', footerText: 'رابط المقالة:', copyBtn: 'نسخ', copied: 'تم!', menuTitle: 'القائمة', toggleTheme: 'تبديل الوضع', favs: 'المفضلة', close: 'إغلاق', changeLang: 'اللغة:' },
-  en: { dir: 'ltr', siteTitle: 'Wikipedia', placeholder: 'Search...', search: 'Search', random: 'Random Article', loading: 'Loading...', error: 'Error occurred.', notFound: 'No results found', footerText: 'Article link:', copyBtn: 'Copy', copied: 'Done!', menuTitle: 'Menu', toggleTheme: 'Toggle Theme', favs: 'Favorites', close: 'Close', changeLang: 'Language:' },
-  fr: { dir: 'ltr', siteTitle: 'Wikipédia', placeholder: 'Recherche...', search: 'Chercher', random: 'Article au hasard', loading: 'Chargement...', error: 'Erreur.', notFound: 'Aucun résultat', footerText: 'Lien de l\'article :', copyBtn: 'Copier', copied: 'Copié !', menuTitle: 'Menu', toggleTheme: 'Changer Thème', favs: 'Favoris', close: 'Fermer', changeLang: 'Langue :' }
+  ar: { 
+    dir: 'rtl', 
+    siteTitle: 'ويكيبيديا', 
+    placeholder: 'بحث...', 
+    search: 'بحث', 
+    random: 'مقالة عشوائية', 
+    loading: 'جاري التحميل...', 
+    error: 'حدث خطأ.', 
+    notFound: 'لم يتم العثور على نتائج', 
+    footerText: 'رابط المقالة:', 
+    copyBtn: 'نسخ', 
+    copied: 'تم!', 
+    menuTitle: 'القائمة', 
+    toggleTheme: 'تبديل الوضع', 
+    favs: 'المفضلة', 
+    close: 'إغلاق', 
+    changeLang: 'اللغة:',
+    opensourceText: 'هذا المشروع مفتوح المصدر',
+    opensourceLink: 'انقر هنا لفتح المشروع على Github'
+  },
+  en: { 
+    dir: 'ltr', 
+    siteTitle: 'Wikipedia', 
+    placeholder: 'Search...', 
+    search: 'Search', 
+    random: 'Random Article', 
+    loading: 'Loading...', 
+    error: 'Error occurred.', 
+    notFound: 'No results found', 
+    footerText: 'Article link:', 
+    copyBtn: 'Copy', 
+    copied: 'Done!', 
+    menuTitle: 'Menu', 
+    toggleTheme: 'Toggle Theme', 
+    favs: 'Favorites', 
+    close: 'Close', 
+    changeLang: 'Language:',
+    opensourceText: 'This project is open source',
+    opensourceLink: 'Click here to open the project on Github'
+  },
+  fr: { 
+    dir: 'ltr', 
+    siteTitle: 'Wikipédia', 
+    placeholder: 'Recherche...', 
+    search: 'Chercher', 
+    random: 'Article au hasard', 
+    loading: 'Chargement...', 
+    error: 'Erreur.', 
+    notFound: 'Aucun résultat', 
+    footerText: 'Lien de l\'article :', 
+    copyBtn: 'Copier', 
+    copied: 'Copié !', 
+    menuTitle: 'Menu', 
+    toggleTheme: 'Changer Thème', 
+    favs: 'Favoris', 
+    close: 'Fermer', 
+    changeLang: 'Langue :',
+    opensourceText: 'Ce projet est open source',
+    opensourceLink: 'Cliquez ici pour ouvrir le projet sur Github'
+  }
 };
 
 window.onload = function() {
@@ -44,7 +101,6 @@ function setLanguage(lang) {
   document.getElementById('htmlTag').dir = t.dir;
   document.getElementById('htmlTag').lang = lang;
   
-  // تغيير اسم الموقع العلوي + عنوان الصفحة في التبويب حسب اللغة
   document.getElementById('siteTitle').innerText = t.siteTitle;
   document.title = t.siteTitle;
 
@@ -59,6 +115,10 @@ function setLanguage(lang) {
   document.getElementById('labelChangeLang').innerText = t.changeLang;
   document.getElementById('favModalTitle').innerText = t.favs;
   document.getElementById('favCloseBtn').innerText = t.close;
+  
+  // تحديث نصوص المشروع مفتوح المصدر بناءً على اللغة
+  document.getElementById('opensourceText').innerText = t.opensourceText;
+  document.getElementById('opensourceLink').innerText = t.opensourceLink;
 
   if (currentArticleTitle) {
     fetchArticleContent(currentArticleTitle);
@@ -307,4 +367,3 @@ function showError() {
   const t = translations[currentLang];
   document.getElementById('content').innerText = t.error;
     }
-                
