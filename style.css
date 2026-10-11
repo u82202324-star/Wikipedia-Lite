@@ -88,7 +88,7 @@ h1 {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 200px;
+  width: 220px;
   background: var(--bg-color);
   border: 1px solid var(--border-color);
   z-index: 9999;
@@ -135,6 +135,23 @@ html[dir="ltr"] .dropdown-menu {
 .dropdown-menu button:hover, .dropdown-menu select:hover {
   background: var(--hover-bg);
   color: var(--hover-text);
+}
+
+/* تنسيق نص مشروع المصدر المفتوح داخل القائمة */
+.menu-footer-text {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.menu-footer-text a {
+  color: #0066cc;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 2px;
 }
 
 .article-header-row {
@@ -350,4 +367,4 @@ footer {
   padding-top: 10px;
   margin-top: 25px;
   font-size: 0.75rem;
-  }
+}
